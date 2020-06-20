@@ -12,3 +12,13 @@ var giantsList= [
     { name:  'Huge-LQG' ,type: 'quasar collection', distanceLY:  9000000000,},
     { name:  'Hercules-Corona Borealis Great Wall' ,type: 'Largest thing', distanceLY: 10000000000,},
 ];
+
+
+for ( let i = 0; i < giantsList.length; i++) { 
+
+        document.write('<h2>' + giantsList[i].name + '</h2>' + ' Distance in Light Year: ' + giantsList[i].distanceLY + ' away ' );
+   
+    if (giantsList[i].distanceLY >= 1000000) {
+         document.write(' (Wow that\'s too far!)' ) 
+    }
+}
