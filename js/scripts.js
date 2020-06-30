@@ -22,3 +22,8 @@ var giantsList= [
 //          document.write(' (Wow that\'s too far!)' ) 
 //     }
 // }
+
+function loopFunction(spaceObject){
+    document.write(spaceObject.name + ' is a ' + spaceObject.type + '...' );
+}
+giantsList.forEach(loopFunction);
