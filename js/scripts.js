@@ -32,4 +32,4 @@ var interstellarGiants = (function () {
   function loopFunction(spaceObject){
         document.write(spaceObject.name + ' is a ' + spaceObject.type + '...' );
     }
-  interstellarGiants.getAll.forEach(loopFunction);
+  interstellarGiants.getAll(forEach(loopFunction));
