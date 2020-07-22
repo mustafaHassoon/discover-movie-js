@@ -1,5 +1,5 @@
-
-var interstellarGiants = (function () {
+//wraping the list inside IIFE
+var interstellarGiants = (function () { 
     var giantsList = [
      { name:  'GQ Lupi b' ,type: 'exoplanet', distanceLY: 495, },
      { name:  'UY Scuti' ,type: 'star', distanceLY: 5100, },
@@ -14,7 +14,7 @@ var interstellarGiants = (function () {
      { name:  'Huge-LQG' ,type: 'quasar collection', distanceLY:  9000000000,},
      { name:  'Hercules-Corona Borealis Great Wall' ,type: 'Largest thing', distanceLY: 10000000000,},
     ];
-  
+  //FUNCTION TO EXTRACT OBJECTS FROM THE LIST
     function add(item) {
       giantsList.push(item);
     }
@@ -28,8 +28,8 @@ var interstellarGiants = (function () {
       getAll: getAll
     };
 })();
-
+// LOOP FUNCTION 
   function loopFunction(spaceObject){
         document.write(spaceObject.name + ' is a ' + spaceObject.type + '...' );
     }
-  interstellarGiants.getAll(forEach(loopFunction));
+  interstellarGiants.getAll().forEach(loopFunction);
