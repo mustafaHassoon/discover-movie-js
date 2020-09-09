@@ -35,6 +35,7 @@ var interstellarGiants = (function () {
      var button = document.createElement('button');
      button.innerText = giantsList.name;
      button.classList.add('list-class');
+     listItem.appendChild(button);
     }
 
 
