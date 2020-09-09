@@ -30,7 +30,13 @@ var interstellarGiants = (function () {
 })();
 // LOOP FUNCTION 
   function loopFunction(spaceObject){
-        document.write(spaceObject.name + ' is a ' + spaceObject.type + '...' );
+     var giants = document.querySelector('giants-list');
+     var listItem = document.createElement('li'); 
+     var button = document.createElement('button');
+     button.innerText = giantsList.name;
+     button.classList.add('list-class');
     }
+
+
   interstellarGiants.getAll().forEach(loopFunction);
   //this is test 
