@@ -27,18 +27,30 @@ var interstellarGiants = (function () {
       add: add,
       getAll: getAll
     };
+
+    function addListItem(interstellarGiants){
+      var giants = document.querySelector('giants-list');
+      var listItem = document.createElement('li'); 
+      var button = document.createElement('button');
+      button.innerText = interstellarGiants.name;
+      button.classList.add('list-class');
+      listItem.appendChild(button);
+      giants.appendChild(listItem);
+   }
 })();
 // LOOP FUNCTION 
-  function loopFunction(spaceObject){
-     var giants = document.querySelector('giants-list');
-     var listItem = document.createElement('li'); 
-     var button = document.createElement('button');
-     button.innerText = giantsList.name;
-     button.classList.add('list-class');
-     listItem.appendChild(button);
-     giants.appendChild(listItem);
-    }
+ // function loopFunction(spaceObject){
+ //    var giants = document.querySelector('giants-list');
+ //    var listItem = document.createElement('li'); 
+ //    var button = document.createElement('button');
+ //    button.innerText = giantsList.name;
+ //    button.classList.add('list-class');
+ //    listItem.appendChild(button);
+ //    giants.appendChild(listItem);
+ // }
+
+ // interstellarGiants.getAll().forEach(loopFunction);
 
 
-  interstellarGiants.getAll().forEach(loopFunction);
-  //this is test 
+ interstellarGiants.getAll().forEach(addListItem);
+ 

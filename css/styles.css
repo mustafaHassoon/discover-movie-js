@@ -1,2 +1,14 @@
 .list-class {
     border: 5px red solid;
+}
+button {
+    background: #F3F781;
+    color: #585858;
+    margin-bottom: 7px;
+    width: 240px;
+    height: 50px;
+    border: 2px solid;
+    font-size: 20px;
+    border-radius: 4px;
+  }
+  
