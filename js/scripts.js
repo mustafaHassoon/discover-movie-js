@@ -22,6 +22,7 @@ var interstellarGiants = (function () {
     function getAll() {
       return giantsList;
     }
+    // FUNCTION TO ADD  NEW LISTITEM FOR EACH SPACE OBJECT 
     function addListItem (giantsObjects){
       var giants = document.querySelector('.giants-list');
       var listItem = document.createElement('li'); 
