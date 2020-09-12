@@ -22,35 +22,27 @@ var interstellarGiants = (function () {
     function getAll() {
       return giantsList;
     }
-  
-    return {
-      add: add,
-      getAll: getAll
-    };
-
-    function addListItem(interstellarGiants){
-      var giants = document.querySelector('giants-list');
+    function addListItem (giantsObjects){
+      var giants = document.querySelector('.giants-list');
       var listItem = document.createElement('li'); 
       var button = document.createElement('button');
-      button.innerText = interstellarGiants.name;
+      button.innerText = giantsObjects.name;
       button.classList.add('list-class');
       listItem.appendChild(button);
       giants.appendChild(listItem);
-   }
+    }
+    return {
+      add: add,
+      getAll: getAll,
+      addListItem: addListItem,
+    };
+
+    
 })();
-// LOOP FUNCTION 
- // function loopFunction(spaceObject){
- //    var giants = document.querySelector('giants-list');
- //    var listItem = document.createElement('li'); 
- //    var button = document.createElement('button');
- //    button.innerText = giantsList.name;
- //    button.classList.add('list-class');
- //    listItem.appendChild(button);
- //    giants.appendChild(listItem);
- // }
 
- // interstellarGiants.getAll().forEach(loopFunction);
+ interstellarGiants.getAll().forEach(function (giantsObjects){
+  interstellarGiants.addListItem(giantsObjects);
 
-
- interstellarGiants.getAll().forEach(addListItem);
+ });
+ ;
  
