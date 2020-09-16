@@ -32,6 +32,10 @@ var interstellarGiants = (function () {
       listItem.appendChild(button);
       giants.appendChild(listItem);
     }
+    //FUNCTION TO SHOW DETAILS OF THE LIST ITEM
+    function showDetails(giantsObjects) {
+      console.log (giantsObjects)
+    }
     return {
       add: add,
       getAll: getAll,
