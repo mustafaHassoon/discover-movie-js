@@ -31,6 +31,10 @@ var interstellarGiants = (function () {
       button.classList.add('list-class');
       listItem.appendChild(button);
       giants.appendChild(listItem);
+      // ADDING EVENT LISTENER TO THE BUTTON
+      button.addEventListener ('click', function (event){
+        showDetails (giantsObjects);
+      });
     }
     //FUNCTION TO SHOW DETAILS OF THE LIST ITEM
     function showDetails(giantsObjects) {
