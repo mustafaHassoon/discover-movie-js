@@ -18,13 +18,30 @@ var interstellarGiants = (function () {
     var giantsList = [];
     var apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
   //FUNCTION TO EXTRACT OBJECTS FROM THE LIST
-    function add(item) {
+
+
+   function getAll() {
+    return giantsList;
+  }
+   function add(item) {
       giantsList.push(item);
     }
   
-    function getAll() {
-      return giantsList;
-    }
+   function loadDetails(item) {
+    var url = item.detailsUrl;
+    return fetch(url).then(function (response) {
+      return response.json();
+    }).then(function (details) {
+      // Now we add the details to the item
+      item.imageUrl = details.sprites.front_default;
+      item.height = details.height;
+      item.types = details.types;
+    }).catch(function (e) {
+      console.error(e);
+    });
+  } 
+
+  
     // FUNCTION TO ADD  NEW LISTITEM FOR EACH SPACE OBJECT 
     function addListItem (giantsObjects){
       var giants = document.querySelector('.giants-list');
