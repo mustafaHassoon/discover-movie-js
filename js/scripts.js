@@ -23,10 +23,48 @@ var interstellarGiants = (function () {
    function getAll() {
     return giantsList;
   }
+
    function add(item) {
       giantsList.push(item);
     }
   
+   function loadList() {
+    return fetch(apiUrl).then(function (response) {
+      return response.json();
+    }).then(function (json) {
+      json.results.forEach(function (item) {
+        var pokemon = {
+          name: item.name,
+          detailsUrl: item.url
+        };
+        add(pokemon);
+      });
+    }).catch(function (e) {
+      console.error(e);
+    })
+  } 
+
+    // FUNCTION TO ADD  NEW LISTITEM FOR EACH SPACE OBJECT 
+    function addListItem (pokemon){
+      var giants = document.querySelector('.giants-list');
+      var listItem = document.createElement('li'); 
+      var button = document.createElement('button');
+      button.innerText = pokemon.name;
+      button.classList.add('list-class');
+      listItem.appendChild(button);
+      giants.appendChild(listItem);
+      // ADDING EVENT LISTENER TO THE BUTTON
+      button.addEventListener ('click', function (event){
+        showDetails (pokemon);
+      });
+    }
+    //FUNCTION TO SHOW DETAILS OF THE LIST ITEM
+    function showDetails(pokemon) {
+      loadDetails(pokemon).then(function () {
+        console.log(pokemon);
+      });
+    }
+
    function loadDetails(item) {
     var url = item.detailsUrl;
     return fetch(url).then(function (response) {
@@ -39,39 +77,31 @@ var interstellarGiants = (function () {
     }).catch(function (e) {
       console.error(e);
     });
-  } 
+  }   
 
-  
-    // FUNCTION TO ADD  NEW LISTITEM FOR EACH SPACE OBJECT 
-    function addListItem (giantsObjects){
-      var giants = document.querySelector('.giants-list');
-      var listItem = document.createElement('li'); 
-      var button = document.createElement('button');
-      button.innerText = giantsObjects.name;
-      button.classList.add('list-class');
-      listItem.appendChild(button);
-      giants.appendChild(listItem);
-      // ADDING EVENT LISTENER TO THE BUTTON
-      button.addEventListener ('click', function (event){
-        showDetails (giantsObjects);
-      });
-    }
-    //FUNCTION TO SHOW DETAILS OF THE LIST ITEM
-    function showDetails(giantsObjects) {
-      console.log (giantsObjects)
-    }
+
     return {
       add: add,
       getAll: getAll,
+      loadList: loadList,
       addListItem: addListItem,
+      showDetails: showDetails,
+      loadDetails: loadDetails,
     };
 
     
 })();
 
- interstellarGiants.getAll().forEach(function (giantsObjects){
-  interstellarGiants.addListItem(giantsObjects);
+//  interstellarGiants.getAll().forEach(function (giantsObjects){
+//   interstellarGiants.addListItem(giantsObjects);
 
- });
- ;
+//  });
+//  ;
  
+
+interstellarGiants.loadList().then(function() {
+  // Now the data is loaded!
+  interstellarGiants.getAll().forEach(function(pokemon){
+    interstellarGiants.addListItem(pokemon);
+  });
+});
