@@ -16,7 +16,7 @@ var interstellarGiants = (function () {
     // ];
 
     var giantsList = [];
-    var apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+    var apiUrl = 'https://api.themoviedb.org/3/discover/movie?api_key=ee0326c2a9a0b787ee75f169ae1003ff&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1';
   //FUNCTION TO EXTRACT OBJECTS FROM THE LIST
 
 
@@ -34,8 +34,10 @@ var interstellarGiants = (function () {
     }).then(function (json) {
       json.results.forEach(function (item) {
         var pokemon = {
-          name: item.name,
-          detailsUrl: item.url
+          name: item.title,
+          detailsUrl: item.overview,
+          releaseDate: item.release_date,
+          posterUrl: item.poster_path
         };
         add(pokemon);
       });
@@ -66,14 +68,14 @@ var interstellarGiants = (function () {
     }
 
    function loadDetails(item) {
-    var url = item.detailsUrl;
+    var url = apiUrl;
     return fetch(url).then(function (response) {
       return response.json();
     }).then(function (details) {
       // Now we add the details to the item
-      item.imageUrl = details.sprites.front_default;
-      item.height = details.height;
-      item.types = details.types;
+      // item.imageUrl = details.poster_path;
+      // item.releaseDate = details.elease_date;
+      // item.overview = details.overview;
     }).catch(function (e) {
       console.error(e);
     });
