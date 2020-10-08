@@ -83,3 +83,11 @@ body {
   /* CSS for modal container - add your own desired CSS styles here */
   display: block;
 }
+/* styling the poster image */
+.modal-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  height: auto;
+}
