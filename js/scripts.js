@@ -1,17 +1,17 @@
 //wraping the list inside IIFE
-var interstellarGiants = (function () { 
+var discoverMovies = (function () { 
   
-    var giantsList = [];
+    var movieListArrsy = [];
     var apiUrl = 'https://api.themoviedb.org/3/discover/movie?api_key=ee0326c2a9a0b787ee75f169ae1003ff&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1';
   
     //FUNCTION TO EXTRACT OBJECTS FROM THE LIST
 
    function getAll() {
-    return giantsList;
+    return movieListArrsy;
   }
 
-   function add(pokemon) {
-      giantsList.push(pokemon);
+   function add(movie) {
+      movieListArrsy.push(movie);
     }
   
    function loadList() {
@@ -19,14 +19,14 @@ var interstellarGiants = (function () {
       return response.json();
     }).then(function (json) {
       json.results.forEach(function (item) {
-        var pokemon = {
+        var movie = {
           name: item.title,
           detailsUrl: item.overview,
           releaseDate: item.release_date,
           posterUrl: item.poster_path
         };
-        add(pokemon);
-        console.log(pokemon);
+        add(movie);
+        console.log(movie);
       });
     }).catch(function (e) {
       console.error(e);
@@ -35,34 +35,29 @@ var interstellarGiants = (function () {
   
 
     // FUNCTION TO ADD  NEW LISTITEM FOR EACH SPACE OBJECT 
-    function addListItem (pokemon){
-      var giants = document.querySelector('.giants-list');
+    function addListItem (movie){
+      var movieList = document.querySelector('.movie-list');
       var listItem = document.createElement('li'); 
       var button = document.createElement('button');
-      button.innerText = pokemon.name;
+      button.innerText = movie.name;
       button.classList.add('list-class');
       listItem.appendChild(button);
-      giants.appendChild(listItem);
+      movieList.appendChild(listItem);
       // ADDING EVENT LISTENER TO THE BUTTON
       button.addEventListener ('click', function (event){
-        showDetails (pokemon);
+        showDetails (movie);
       });
     }
+
     //FUNCTION TO SHOW DETAILS OF THE LIST ITEM
     function showDetails(item) {
-      interstellarGiants.loadDetails(item).then(function () {
+      discoverMovies.loadDetails(item).then(function () {
         console.log(item);
         showModal(item);
       });
     }
 
-    function loadDetails2(item) {
     
-        item.imageUrl = details.poster_path;
-        item.releaseDate = details.elease_date;
-        item.overview = details.overview;
-     
-    }   
    function loadDetails(item) {
     var url = apiUrl;
     return fetch(url).then(function (response) {
@@ -76,6 +71,7 @@ var interstellarGiants = (function () {
       console.error(e);
     });
   }   
+
 
  // Show modal function
  
@@ -114,8 +110,6 @@ var interstellarGiants = (function () {
    modal.appendChild(overview);
    modal.appendChild(imageElement);
    modalContainer.appendChild(modal);
-
-
    modalContainer.classList.add('is-visible');
  }
 
@@ -129,8 +123,7 @@ var interstellarGiants = (function () {
    }
  });
  modalContainer.addEventListener('click', (e) => {
-   // Since this is also triggered when clicking INSIDE the modal
-   // We only want to close if the user clicks directly on the overlay
+   //  close if the user clicks directly on the overlay
    var target = e.target;
    if (target === modalContainer) {
      hideModal();
@@ -153,17 +146,13 @@ var interstellarGiants = (function () {
 
     
 })();
+//End of IIFE
 
-//  interstellarGiants.getAll().forEach(function (giantsObjects){
-//   interstellarGiants.addListItem(giantsObjects);
 
-//  });
-//  ;
- 
 
-interstellarGiants.loadList().then(function() {
+discoverMovies.loadList().then(function() {
   // Now the data is loaded!
-  interstellarGiants.getAll().forEach(function(pokemon){
-    interstellarGiants.addListItem(pokemon);
+  discoverMovies.getAll().forEach(function(movie){
+    discoverMovies.addListItem(movie);
   });
 });
