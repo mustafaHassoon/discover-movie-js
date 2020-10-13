@@ -1,32 +1,32 @@
 //wraping the list inside IIFE
 var discoverMovies = (function () { 
   
-    var movieListArrsy = [];
+    var dicoverMoviesList = [];
     var apiUrl = 'https://api.themoviedb.org/3/discover/movie?api_key=ee0326c2a9a0b787ee75f169ae1003ff&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1';
   
     //FUNCTION TO EXTRACT OBJECTS FROM THE LIST
 
    function getAll() {
-    return movieListArrsy;
+    return dicoverMoviesList;
   }
 
    function add(movie) {
-      movieListArrsy.push(movie);
+      dicoverMoviesList.push(movie);
     }
   
    function loadList() {
     return fetch(apiUrl).then(function (response) {
       return response.json();
     }).then(function (json) {
-      json.results.forEach(function (item) {
-        var movie = {
-          name: item.title,
-          detailsUrl: item.overview,
-          releaseDate: item.release_date,
-          posterUrl: item.poster_path
+      json.results.forEach(function (movie) {
+        var movieObject = {
+          name: movie.title,
+          detailsUrl: movie.overview,
+          releaseDate: movie.release_date,
+          posterUrl: movie.poster_path
         };
-        add(movie);
-        console.log(movie);
+        add(movieObject);
+        console.log(movieObject);
       });
     }).catch(function (e) {
       console.error(e);
@@ -34,7 +34,7 @@ var discoverMovies = (function () {
   } 
   
 
-    // FUNCTION TO ADD  NEW LISTITEM FOR EACH SPACE OBJECT 
+    // FUNCTION TO ADD  NEW LISTITEM FOR EACH MOVIE OBJECT 
     function addListItem (movie){
       var movieList = document.querySelector('.movie-list');
       var listItem = document.createElement('li'); 
@@ -50,33 +50,33 @@ var discoverMovies = (function () {
     }
 
     //FUNCTION TO SHOW DETAILS OF THE LIST ITEM
-    function showDetails(item) {
-      discoverMovies.loadDetails(item).then(function () {
-        console.log(item);
-        showModal(item);
+    function showDetails(movie) {
+      loadDetails(movie).then(function () {
+        console.log(movie);
+        showModal(movie.name, movie.releaseDate, movie.detailsUrl, movie.posterUrl);
       });
     }
 
     
-   function loadDetails(item) {
+   function loadDetails(movie) {
     var url = apiUrl;
     return fetch(url).then(function (response) {
       return response.json();
     }).then(function (details) {
-      // Now we add the details to the item
-      item.imageUrl = details.poster_path;
-      item.releaseDate = details.elease_date;
-      item.overview = details.overview;
+      //  ADD THE DETAILS TO THE ITEM
+      //movie.imageUrl = details.poster_path;
+      //movie.releaseDate = details.release_date;
+      //movie.overview = details.overview;
     }).catch(function (e) {
       console.error(e);
     });
   }   
 
 
- // Show modal function
+ // SHOW MODAL FUNCTION
  
  var modalContainer = document.querySelector('#modal-container');
- function showModal(item) {
+ function showModal(name, releaseDate, detailsUrl, posterUrl) {
    // Clear existing modal content
    modalContainer.innerHTML = '';
    // Creating div element in DOM
@@ -91,18 +91,18 @@ var discoverMovies = (function () {
    closeButtonElement.addEventListener('click', hideModal);
    // Create element for title in modal content
    var titleElement = document.createElement('h1');
-   titleElement.innerText = item.title;
+   titleElement.innerText = name;
    // Create element for release date in modal content
    var releaseDate = document.createElement('p');
-   releaseDate.innerText = 'Release date : ' + item.release_date;
+   releaseDate.innerText = 'Release date : ' + releaseDate;
   // Create element for overview in modal content
    var overview = document.createElement('p');
-   overview.innerText = 'Overview : ' + item.overview;
+   overview.innerText = 'Overview : ' + detailsUrl;
 
    // Create img in modal content
    var imageElement = document.createElement('img');
    imageElement.classList.add('modal-img');
-   imageElement.setAttribute('src', item.poster_path);
+   imageElement.setAttribute('src', 'https://image.tmdb.org/t/p/original'+posterUrl);
 
    modal.appendChild(closeButtonElement);
    modal.appendChild(titleElement);
