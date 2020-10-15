@@ -2,15 +2,29 @@
 html, 
 body {
   font-family: Arial, sans-serif;
+  background: #ccd0d4;
 }
 
 /*for the buttons of the list  */
+ul{
+  list-style-type: none;
+  margin-left: 40%;
+  align-items: center;
+}
 
 .list-class {
-    background-color: #4caf50; /* Green */
+  align-items: center;
+  list-style-type: none;
+  background:#ccd0d4; /* off white */
   border: none;
-  color: white;
+  box-shadow: 
+           -3px -3px 7px #ffffffb2,
+            3px 3px 5px rgba(94, 104, 121, 0.945);
+
+  
+  
   padding: 16px 32px;
+  
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -19,10 +33,14 @@ body {
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
   cursor: pointer;
-  background-color: white;
-  color: black;
-  border: 2px solid #4caf50;
+  background-color:#ccd0d4;
+ 
+  border-radius: 32px;
+  
+
+ 
 }
+
 
  /*modal styling and (visible , hidden)*/
 
@@ -51,11 +69,14 @@ body {
   margin: auto;
   display: inline-block;
   box-sizing: border-box;
-  background: #fff;
+  background: rgba(255, 255, 255, 1);
   padding: 15px;
   width: 100%;
-  max-width: 700px;
+  max-width: 600px;
   text-align: left;
+  border-radius: 20px;
+  
+  
 }
 
 .modal-close {
@@ -69,6 +90,7 @@ body {
 
 .modal h1 {
   margin-top: 0;
+  text-align: center;
 }
 
 .modal p {
@@ -88,6 +110,30 @@ body {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 15px;
   width: 50%;
   height: auto;
+  border-radius: 20px;
+  box-shadow: 
+           -3px -3px 7px #ffffffb2, 
+           3px 3px 5px rgba(94, 104, 121, 0.945);
+}
+
+.list-class:active{
+  box-shadow: inset  -4px -4px 10px rgba(255, 255, 255, 0.45), 
+  inset  4px 4px 7px rgba(94, 104, 121, 0.28);
+
+margin: 30px;
+display: inline-block;
+  
+  border: none;
+  
+}
+
+.list-class :focus{
+  color: red;
+}
+
+.movie-list {
+  align-items: center;
 }
