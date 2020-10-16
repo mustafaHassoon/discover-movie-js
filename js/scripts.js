@@ -126,10 +126,7 @@ var discoverMovies = (function () {
   hideModal();
   }
   });
-  
-  document.querySelector('#show-modal').addEventListener('click', () => {
-  showModal('Modal title', 'This is the modal content!');
-  });
+ 
   return {
   add: add,
   getAll: getAll,
@@ -141,7 +138,7 @@ var discoverMovies = (function () {
   hideModal: hideModal,
   };
   
-  })();
+  })()
   //End of IIFE
   
   discoverMovies.loadList().then(function () {
