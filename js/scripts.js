@@ -69,9 +69,7 @@ var discoverMovies = (function () {
   console.error(e);
   });
   }
-  
   // SHOW MODAL FUNCTION
-  
   var modalContainer = document.querySelector('#modal-container');
   function showModal(movie) {
   // Clear existing modal content
